@@ -5,7 +5,7 @@ pipeline {
     stage("MKDIR") {
       steps {
         script {
-          "mkdir~/criadoporjenkins "
+          "mkdir ~/criadoporjenkins "
         }
       }
     }
