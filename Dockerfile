@@ -14,8 +14,9 @@ FROM adoptopenjdk/openjdk11 AS build
 WORKDIR /workspace/app
 COPY . /workspace/app
 
+EXPOSE 8080
+
 RUN --mount=type=cache,target=/root/.gradle ./gradlew clean build
 RUN mkdir -p build/dependency && (cd build/dependency; jar -xf ../libs/*.jar)
 
-EXPOSE 8080
 # ENTRYPOINT ["java","-jar","/app.jar"]
