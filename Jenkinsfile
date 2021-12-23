@@ -10,6 +10,7 @@ pipeline {
 
       stage("Build Gradle") {
         steps {
+          sh "echo ${HOME}/myPath"
           sh "chmod +x gradlew"
           // sh "./gradlew clean build --info"
         }
@@ -21,23 +22,23 @@ pipeline {
       //   }
       // }
    
-      stage("Docker Build") {
-        steps {
-            script {
-              dockerapp = docker.build("jaksonsneider/spring:${env.BUILD_ID}", "-f ./Dockerfile .")
-            }
-        }
-      }
+      // stage("Docker Build") {
+      //   steps {
+      //       script {
+      //         dockerapp = docker.build("jaksonsneider/spring:${env.BUILD_ID}", "-f ./Dockerfile .")
+      //       }
+      //   }
+      // }
 
-      stage("Docker push Image") {
-        steps {
-          script {
-            docker.withRegistry("https://registry.hub.docker.com", "dockerhuba") {
-              dockerapp.push("latest")
-              dockerapp.push("${env.BUILD_ID}")
-            }
-          }
-        }
-      }
+      // stage("Docker push Image") {
+      //   steps {
+      //     script {
+      //       docker.withRegistry("https://registry.hub.docker.com", "dockerhuba") {
+      //         dockerapp.push("latest")
+      //         dockerapp.push("${env.BUILD_ID}")
+      //       }
+      //     }
+      //   }
+      // }
   }
 }
