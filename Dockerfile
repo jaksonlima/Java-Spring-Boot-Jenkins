@@ -7,8 +7,12 @@
 
 # syntax=docker/dockerfile:experimental
 FROM adoptopenjdk/openjdk11 AS build
-WORKDIR /workspace/app
 
+RUN addgroup -S demo && adduser -S demo -G demo
+USER demo
+
+WORKDIR /workspace/app
 COPY . /workspace/app
+
 RUN --mount=type=cache,target=/root/.gradle ./gradlew clean build
 RUN mkdir -p build/dependency && (cd build/dependency; jar -xf ../libs/*.jar)
