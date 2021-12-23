@@ -12,7 +12,7 @@ pipeline {
       stage("Build Gradle") {
         steps {
           script {
-            "./gradlew clean build"
+            "./gradlew clean build --info"
           }
         }
       }
@@ -28,9 +28,10 @@ pipeline {
       stage("Docker push Image") {
         steps {
           script {
-            dockerapp.withRegistry("https://registry.hub.docker.com", "dockerhuba")
-            dockerapp.push("latest")
-            dockerapp.push("${env.BUILD_ID}")
+            docker.withRegistry("https://registry.hub.docker.com", "dockerhuba") {
+              dockerapp.push("latest")
+              dockerapp.push("${env.BUILD_ID}")
+            }
           }
         }
       }
