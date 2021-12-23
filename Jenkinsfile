@@ -8,12 +8,12 @@ pipeline {
         }
       }
 
-      // stage("Build Gradle") {
-      //   steps {
-      //     sh "chmod +x gradlew"
-      //     sh "./gradlew clean build --info"
-      //   }
-      // }
+      stage("Build Gradle") {
+        steps {
+          sh "chmod +x gradlew"
+          // sh "./gradlew clean build --info"
+        }
+      }
 
       stage("Docker BuildKit") {
         steps {
