@@ -9,15 +9,6 @@ pipeline {
         }
       }
 
-       stage("MKDIR") {
-      steps {
-        script {
-          "mkdir criadoporjenkins-2"
-        }
-      }
-    }
-
-
       stage("Build Gradle") {
         steps {
           script {
@@ -27,7 +18,7 @@ pipeline {
       }
 
       stage("Docker Build") {
-        steps{
+        steps {
             script {
               dockerapp = docker.build("jaksonsneider/spring:${env.BUILD_ID}", "-f ./Dockerfile .")
             }
@@ -37,8 +28,8 @@ pipeline {
       stage("Docker push Image") {
         steps {
           script {
-            docker.withDockerRegistry("https://registry.hub.docker.com", "dockerhuba")
-            dockerapp.push("push")
+            dockerapp.withRegistry("https://registry.hub.docker.com", "dockerhuba")
+            dockerapp.push("latest")
             dockerapp.push("${env.BUILD_ID}")
           }
         }
