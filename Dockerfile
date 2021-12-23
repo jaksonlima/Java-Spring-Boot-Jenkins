@@ -1,5 +1,4 @@
 FROM  adoptopenjdk/openjdk11
-RUN ./gradlew clean build
 VOLUME /tmp
 ARG JAR_FILE
 RUN echo "####################"
