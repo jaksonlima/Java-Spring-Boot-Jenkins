@@ -4,7 +4,7 @@ pipeline {
   stages {
       stage("Get Source") {
         steps{
-            git url: "https://github.com/jaksonlima/Java-Spring-Boot-Jenkins.git" branch: "main" credentialsId: "github"
+            git url: "https://github.com/jaksonlima/Java-Spring-Boot-Jenkins.git", branch: "main", credentialsId: "github"
         }
       }
 
