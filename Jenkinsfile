@@ -2,6 +2,12 @@ pipeline {
   agent any
 
   stages {
+
+      stage("Build Mkdir") {
+        steps {
+          sh "mkdir teste-jenkins-mkdir"
+        }
+      }
    
       stage("Get Source") {
         steps{
@@ -11,9 +17,7 @@ pipeline {
 
       stage("Build Gradle") {
         steps {
-          script {
-            "./gradlew clean build --info"
-          }
+          sh "./gradlew clean build --info"
         }
       }
 
