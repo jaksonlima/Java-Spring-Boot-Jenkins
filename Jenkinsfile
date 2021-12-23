@@ -15,11 +15,11 @@ pipeline {
         }
       }
 
-      stage("Docker BuildKit") {
-        steps {
-            sh "DOCKER_BUILDKIT=1 docker build ."
-        }
-      }
+      // stage("Docker BuildKit") {
+      //   steps {
+      //       sh "DOCKER_BUILDKIT=1 docker build ."
+      //   }
+      // }
    
       stage("Docker Build") {
         steps {
