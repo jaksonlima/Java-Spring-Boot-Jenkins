@@ -12,7 +12,7 @@ pipeline {
        stage("MKDIR") {
       steps {
         script {
-          "mkdir /home/jaksonsneider/criadoporjenkins-2"
+          "mkdir criadoporjenkins-2"
         }
       }
     }
