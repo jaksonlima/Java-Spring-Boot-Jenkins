@@ -2,7 +2,14 @@ pipeline {
   agent any
 
   stages {
-    stage("MKDIR") {
+   
+      stage("Get Source") {
+        steps{
+            git url: "https://github.com/jaksonlima/Java-Spring-Boot-Jenkins.git", branch: "main", credentialsId: "github"
+        }
+      }
+
+       stage("MKDIR") {
       steps {
         script {
           "mkdir ~/criadoporjenkins "
@@ -10,11 +17,6 @@ pipeline {
       }
     }
 
-      stage("Get Source") {
-        steps{
-            git url: "https://github.com/jaksonlima/Java-Spring-Boot-Jenkins.git", branch: "main", credentialsId: "github"
-        }
-      }
 
       stage("Build Gradle") {
         steps {
