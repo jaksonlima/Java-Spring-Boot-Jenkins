@@ -8,8 +8,8 @@
 # syntax=docker/dockerfile:experimental
 FROM adoptopenjdk/openjdk11 AS build
 
-RUN addgroup -S demo && adduser -S demo -G demo
-USER demo
+# RUN addgroup -S demo && adduser -S demo -G demo
+# USER demo
 
 WORKDIR /workspace/app
 COPY . /workspace/app
