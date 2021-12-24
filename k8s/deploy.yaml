@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jenkins-deploy-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jenkins-api
+  template:
+    metadata:
+      labels:
+        app: jenkins-api
+    spec:
+      containers:
+        - name: jenkins-pod-api
+          image: jaksonsneider/spring:37
+          resources: {}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: jenkins-service
+spec:
+  selector:
+    app: jenkins-api
+  type: ClusterIP
+  ports:
+    - name: jenkins-service-api
+      port: 8080
+      targetPort: 8080

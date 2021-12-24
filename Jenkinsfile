@@ -29,15 +29,27 @@ pipeline {
         }
       }
 
-      // stage("Docker push Image") {
-      //   steps {
-      //     script {
-      //       docker.withRegistry("https://registry.hub.docker.com", "dockerhuba") {
-      //         dockerapp.push("latest")
-      //         dockerapp.push("${env.BUILD_ID}")
-      //       }
-      //     }
-      //   }
-      // }
+      stage("Docker push Image") {
+        steps {
+          script {
+            docker.withRegistry("https://registry.hub.docker.com", "dockerhuba") {
+              dockerapp.push("latest")
+              dockerapp.push("${env.BUILD_ID}")
+            }
+          }
+        }
+      }
+
+      stage("Deploy Kubernetes") {
+        agent {
+          kubernetes {
+            cloud: "kubernetes"
+          }
+        }
+
+        steps {
+          kubernetesDeploy(configs: "**/k8s/**", kubeconfigId: "kubeconfig")
+        }
+      }
   }
 }
