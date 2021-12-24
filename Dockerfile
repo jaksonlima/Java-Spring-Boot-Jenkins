@@ -37,4 +37,4 @@ RUN set -o errexit -o nounset \
   && gradle --version
 
 # ENTRYPOINT [ "gradle --stop"," &  ", "gradle build --continuous --quiet"," & ","gradle bootRun -Pdebug" ]
-ENTRYPOINT [ "gradle --stop"," &  ", "gradle build --continuous --quiet"," & ","gradle bootRun" ]
+ENTRYPOINT [ "gradle build --continuous --quiet"," & ","gradle bootRun" ]
