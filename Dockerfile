@@ -36,5 +36,7 @@ RUN set -o errexit -o nounset \
   && echo "Testing Gradle installation" \
   && gradle --version
 
+RUN gradle build
+
 # ENTRYPOINT [ "gradle --stop"," &  ", "gradle build --continuous --quiet"," & ","gradle bootRun -Pdebug" ]
 ENTRYPOINT [ "gradle bootRun" ]
