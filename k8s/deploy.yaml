@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: jenkins-pod-api
-          image: jaksonsneider/spring:37
+          image: jaksonsneider/spring:{{tag}}
           resources: {}
 ---
 kind: Service
